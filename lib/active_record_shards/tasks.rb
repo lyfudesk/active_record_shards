@@ -31,8 +31,8 @@ namespace :db do
     ActiveRecord::Base.configurations.each do |key, conf|
       next if !key.starts_with?(ActiveRecordShards.rails_env) || key.ends_with?("_slave")
       begin
-        # MysqlAdapter takes charset instead of encoding in Rails 3.2 or greater
-        # https://github.com/rails/rails/blob/3-2-stable/activerecord/lib/active_record/railties/databases.rake#L68-L82
+        # MysqlAdapter takes charset instead of encoding in Rails 4.2 or greater
+        # https://github.com/rails/rails/blob/4-2-stable/activerecord/lib/active_record/tasks/mysql_database_tasks.rb#L85-L96
         symbolized_configuration = conf.symbolize_keys
         symbolized_configuration[:charset] = symbolized_configuration[:encoding]
 
